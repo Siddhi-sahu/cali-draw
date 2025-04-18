@@ -5,6 +5,7 @@ export const CanvasBoard = () => {
     const CanvasRef = useRef<null | HTMLCanvasElement>(null);
     const DrawingRef = useRef(false);
     //persist ctx in whole component
+    //2d drawing context
     const ctxRef = useRef<null | CanvasRenderingContext2D>(null);
 
     //correctcoordiantes
@@ -69,5 +70,5 @@ export const CanvasBoard = () => {
 
     }
 
-    return <canvas className="fixed top-0 left-0 touch-none z-50" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseDown={handleMouseDown} ref={CanvasRef}></canvas>
+    return <canvas className="absolute touch-none z-10 top-0 left-0" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseDown={handleMouseDown} ref={CanvasRef}></canvas>
 }
