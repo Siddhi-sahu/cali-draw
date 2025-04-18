@@ -10,12 +10,18 @@ export const CanvasBoard = () => {
     //correctcoordiantes
 
     useEffect(() => {
-        if (CanvasRef.current) {
+        const canvas = CanvasRef.current;
+        if (canvas) {
+            const width = window.innerWidth;
+            const height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
 
-            const ctx = CanvasRef.current.getContext("2d");
+
+            const ctx = canvas.getContext("2d");
             if (ctx) {
-                ctx.lineWidth = 3;
-                ctx.strokeStyle = "white";
+                ctx.lineWidth = 4;
+                ctx.strokeStyle = "black";
                 ctx.lineJoin = "round";
                 ctx.lineCap = "round";
                 ctxRef.current = ctx;
@@ -63,5 +69,5 @@ export const CanvasBoard = () => {
 
     }
 
-    return <canvas className="h-screen w-full bg-black touch-none" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseDown={handleMouseDown} ref={CanvasRef}></canvas>
+    return <canvas className="fixed top-0 left-0 touch-none z-50" onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onMouseDown={handleMouseDown} ref={CanvasRef}></canvas>
 }
