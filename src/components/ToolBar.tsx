@@ -1,11 +1,12 @@
 
 interface toolbarProps {
     tool: "pencil" | "eraser";
-    setTool: any
+    setTool: (x: "pencil" | "eraser") => void;
     // setTool: (x: string) => void;
     // onSelect: any
 }
 export const ToolBar = ({ setTool, tool }: toolbarProps) => {
+    console.log(tool)
 
     return (
         <div className="absolute top-4 left-1/2 -translate-x-1/2 z-50 bg-black/80  rounded-xl px-4 py-2 flex gap-2">

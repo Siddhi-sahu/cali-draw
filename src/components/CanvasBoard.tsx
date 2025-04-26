@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 interface toolProps {
     tool: "pencil" | "eraser"
@@ -36,7 +36,7 @@ export const CanvasBoard = ({ tool }: toolProps) => {
 
     }, [tool]);
 
-    const handleMouseDown = (e: any) => {
+    const handleMouseDown = (e: React.MouseEvent<HTMLCanvasElement>) => {
         DrawingRef.current = true;
         //correct position of the canvas
         const rect = CanvasRef.current!.getBoundingClientRect();
@@ -60,7 +60,7 @@ export const CanvasBoard = ({ tool }: toolProps) => {
         // }
 
     }
-    const handleMouseMove = (e: any) => {
+    const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
         //correct position of the canvas
         const rect = CanvasRef.current!.getBoundingClientRect();
         const x = e.clientX - rect.left;
