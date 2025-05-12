@@ -2,9 +2,11 @@
 import React, { useEffect, useRef } from "react";
 
 interface toolProps {
-    tool: "pencil" | "eraser"
+    tool: "pencil" | "eraser" | "circle" | "rectangle"
 }
-
+//startung point of circle when the user mouse odwn
+//randius is the ending point (calculate using distance formula)
+//
 export const CanvasBoard = ({ tool }: toolProps) => {
     const CanvasRef = useRef<null | HTMLCanvasElement>(null);
     const DrawingRef = useRef(false);
@@ -50,14 +52,14 @@ export const CanvasBoard = ({ tool }: toolProps) => {
 
         if (tool === "pencil") {
             ctxRef.current?.beginPath();
-
             //move the pen/pointer
             ctxRef.current?.moveTo(x, y);
 
         }
-        // else if (tool === "eraser") {
-        //     ctxRef.current.clearRect(0, 0, CanvasRef.current.width, CanvasRef.current.height)
-        // }
+        else if (tool === "circle") {
+            ctxRef.current.beginPath()
+
+        }
 
     }
     const handleMouseMove = (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -71,6 +73,10 @@ export const CanvasBoard = ({ tool }: toolProps) => {
                 ctxRef.current?.lineTo(x, y);
 
                 //actually render the linee
+                ctxRef.current?.stroke();
+
+            } else if (tool === "circle") {
+                ctxRef.current?.arc(x, y, 50, 0, 2 * Math.PI);
                 ctxRef.current?.stroke();
 
             }
